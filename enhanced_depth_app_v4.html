@@ -116,7 +116,7 @@
             inset: 0;
             pointer-events: none;
             overflow: hidden;
-            z-index: 0;
+            z-index: -1;
         }
 
         .sparkle-dots span {
@@ -1120,13 +1120,13 @@
        <span></span><span></span><span></span><span></span>
     </div>
   
-
+<div class="sparkle-dots"></div>
     <div class="container">
         <div class="header">
             <h1>AI Depth Vision Studio</h1>
             <p>Advanced depth estimation with enhanced layer-based chromostereopsis effects</p>
         </div>
-        <div class="sparkle-dots"></div>
+        
         <div class="upload-section glass-card">
             <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
                 <div class="upload-content">
