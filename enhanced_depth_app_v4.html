@@ -14,9 +14,9 @@
             --glass-bg: rgba(255, 255, 255, 0.18);
             --glass-border: rgba(255, 255, 255, 0.25);
             --glass-blur: 40px;
-            --text-primary: #1c1c1e;
-            --text-secondary: #4b5563;
-            --text-muted: #9ca3af;
+            --text-primary: #000000;
+            --text-secondary: #000000;
+            --text-muted: #000000;
             --text-shadow: 0 1px 2px rgba(0,0,0,0.2);
             --accent-blue: #0a84ff;
             --accent-purple: #5e5ce6;
@@ -36,7 +36,7 @@
 
         body {
             font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f5d7d7 50%, #d7dff5 100%);
             min-height: 100vh;
             color: var(--text-primary);
             line-height: 1.6;
@@ -111,6 +111,27 @@
             100% { transform: translateY(0) rotate(360deg); }
         }
 
+        .sparkle-dots {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .sparkle-dots span {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: sparkleMove linear infinite;
+        }
+
+        @keyframes sparkleMove {
+            to { transform: translate(var(--dx), var(--dy)); }
+        }
+
         @keyframes backgroundMove {
             0% { background-position: 0 0, 0 0, 0 0; }
             100% { background-position: 50px 50px, 0 0, 0 0; }
@@ -146,10 +167,7 @@
         .header h1 {
             font-size: clamp(2rem, 4vw, 3.5rem);
             font-weight: 700;
-            background: var(--accent-gradient);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #000;
             margin-bottom: 16px;
             letter-spacing: -0.02em;
             text-shadow: 0 2px 4px rgba(0,0,0,0.15);
@@ -1079,9 +1097,9 @@
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --text-primary: #f4f4f6;
-                --text-secondary: #cfd2da;
-                --text-muted: #9ba0b0;
+                --text-primary: #000000;
+                --text-secondary: #000000;
+                --text-muted: #000000;
                 --surface-dark: rgba(0,0,0,0.6);
                 --surface-light: rgba(255,255,255,0.1);
                 --glass-bg: rgba(255,255,255,0.12);
@@ -1090,7 +1108,7 @@
             }
 
             body {
-                background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+                background: linear-gradient(135deg, #ffffff 0%, #f5d7d7 50%, #d7dff5 100%);
                 color: var(--text-primary);
             }
         }
@@ -1098,10 +1116,11 @@
 </head>
 <body>
      <div class="background-pattern"></div>
-     <div class="floating-shapes">
-        <span></span><span></span><span></span><span></span>
-     </div>
-    
+    <div class="floating-shapes">
+       <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="sparkle-dots"></div>
+
     <div class="container">
         <div class="header">
             <h1>AI Depth Vision Studio</h1>
@@ -3276,9 +3295,34 @@
             return { data: depthArray, width, height, method: 'basic' };
         }
 
+        function createSparkleDots() {
+            const container = document.querySelector('.sparkle-dots');
+            if (!container) return;
+            const colors = ['rgba(255,0,0,0.8)', 'rgba(0,0,255,0.8)'];
+            const dotCount = 80;
+            for (let i = 0; i < dotCount; i++) {
+                const dot = document.createElement('span');
+                dot.style.backgroundColor = colors[i % 2];
+                const startX = Math.random() * 100;
+                const startY = Math.random() * 100;
+                const endX = startX + (Math.random() - 0.5) * 20;
+                const endY = startY + (Math.random() - 0.5) * 20;
+                const duration = 10 + Math.random() * 20;
+                const delay = -Math.random() * duration;
+                dot.style.left = startX + 'vw';
+                dot.style.top = startY + 'vh';
+                dot.style.setProperty('--dx', (endX - startX) + 'vw');
+                dot.style.setProperty('--dy', (endY - startY) + 'vh');
+                dot.style.animationDuration = duration + 's';
+                dot.style.animationDelay = delay + 's';
+                container.appendChild(dot);
+            }
+        }
+
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             updateGradientPreview();
+            createSparkleDots();
         });
     </script>
 </body>
