@@ -111,27 +111,7 @@
             100% { transform: translateY(0) rotate(360deg); }
         }
 
-        .sparkle-dots {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: -1;
-        }
-
-        .sparkle-dots span {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 100%;
-            opacity: 0.3;
-            animation: sparkleMove linear infinite;
-        }
-
-        @keyframes sparkleMove {
-            to { transform: translate(var(--dx), var(--dy)); }
-        }
-
+        
         @keyframes backgroundMove {
             0% { background-position: 0 0, 0 0, 0 0; }
             100% { background-position: 50px 50px, 0 0, 0 0; }
@@ -1120,7 +1100,7 @@
        <span></span><span></span><span></span><span></span>
     </div>
   
-<div class="sparkle-dots"></div>
+
     <div class="container">
         <div class="header">
             <h1>AI Depth Vision Studio</h1>
@@ -1599,7 +1579,7 @@
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
             initializeEventListeners();
-            updateGradientPreview();
+            
             setupDepthLayers();
         });
 
@@ -3295,34 +3275,12 @@
             return { data: depthArray, width, height, method: 'basic' };
         }
 
-        function createSparkleDots() {
-            const container = document.querySelector('.sparkle-dots');
-            if (!container) return;
-            const colors = ['rgba(255,0,0,0.8)', 'rgba(0,0,255,0.8)'];
-            const dotCount = 10;
-            for (let i = 0; i < dotCount; i++) {
-                const dot = document.createElement('span');
-                dot.style.backgroundColor = colors[i % 2];
-                const startX = Math.random() * 100;
-                const startY = Math.random() * 100;
-                const endX = startX + (Math.random() - 0.5) * 20;
-                const endY = startY + (Math.random() - 0.5) * 20;
-                const duration = 10 + Math.random() * 20;
-                const delay = -Math.random() * duration;
-                dot.style.left = startX + 'vw';
-                dot.style.top = startY + 'vh';
-                dot.style.setProperty('--dx', (endX - startX) + 'vw');
-                dot.style.setProperty('--dy', (endY - startY) + 'vh');
-                dot.style.animationDuration = duration + 's';
-                dot.style.animationDelay = delay + 's';
-                container.appendChild(dot);
-            }
-        }
+        
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             updateGradientPreview();
-            createSparkleDots();
+            
         });
     </script>
 </body>
