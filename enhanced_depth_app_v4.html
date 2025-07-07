@@ -39,7 +39,28 @@
             min-height: 100vh;
             color: var(--text-primary);
             line-height: 1.6;
+            font-weight: 500;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(130deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .background-pattern {
@@ -48,11 +69,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image:
+            background:
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 4px),
                 radial-gradient(circle at 25% 25%, rgba(120,119,198,0.2) 0%, transparent 50%),
                 radial-gradient(circle at 75% 75%, rgba(255,119,198,0.2) 0%, transparent 50%);
+            animation: backgroundMove 30s linear infinite;
             pointer-events: none;
             z-index: -1;
+        }
+
+        @keyframes backgroundMove {
+            0% { background-position: 0 0, 0 0, 0 0; }
+            100% { background-position: 50px 50px, 0 0, 0 0; }
         }
 
         .container {
@@ -91,6 +119,7 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 16px;
             letter-spacing: -0.02em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
         }
 
         .header p {
@@ -127,7 +156,7 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             backdrop-filter: blur(20px) saturate(180%);
         }
 
@@ -228,7 +257,7 @@
         .image-container {
             position: relative;
             border-radius: 16px;
-            overflow: hidden;
+            overflow: visible;
             background: var(--surface-light);
             backdrop-filter: blur(var(--glass-blur)) saturate(180%);
             min-height: 240px;
@@ -306,7 +335,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 8px;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-secondary);
             font-size: 0.875rem;
         }
@@ -332,7 +361,7 @@
             appearance: none;
             position: relative;
             cursor: pointer;
-            overflow: hidden;
+            overflow: visible;
             backdrop-filter: blur(20px) saturate(180%);
         }
 
@@ -1028,6 +1057,23 @@
         ::-webkit-scrollbar-track { background: #e5e7eb; }
         ::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent-purple); }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-primary: #f4f4f6;
+                --text-secondary: #cfd2da;
+                --text-muted: #9ba0b0;
+                --surface-dark: rgba(0,0,0,0.6);
+                --surface-light: rgba(255,255,255,0.1);
+                --glass-bg: rgba(255,255,255,0.12);
+                --glass-border: rgba(255,255,255,0.25);
+            }
+
+            body {
+                background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+                color: var(--text-primary);
+            }
+        }
     </style>
 </head>
 <body>
