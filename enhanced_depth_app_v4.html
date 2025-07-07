@@ -112,26 +112,7 @@
         }
 
         .sparkle-dots {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: -1;
-        }
-
-        .sparkle-dots span {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: sparkleMove linear infinite;
-        }
-
-        @keyframes sparkleMove {
-            to { transform: translate(var(--dx), var(--dy)); }
-        }
-
+        
         @keyframes backgroundMove {
             0% { background-position: 0 0, 0 0, 0 0; }
             100% { background-position: 50px 50px, 0 0, 0 0; }
@@ -1120,7 +1101,7 @@
        <span></span><span></span><span></span><span></span>
     </div>
   
-<div class="sparkle-dots"></div>
+
     <div class="container">
         <div class="header">
             <h1>AI Depth Vision Studio</h1>
