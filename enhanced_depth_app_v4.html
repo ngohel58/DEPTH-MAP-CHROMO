@@ -17,7 +17,7 @@
             --text-primary: #000000;
             --text-secondary: #000000;
             --text-muted: #000000;
-            --text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            --text-shadow: none !important;
             --accent-blue: #0a84ff;
             --accent-purple: #5e5ce6;
             --accent-pink: #ff375f;
@@ -121,8 +121,8 @@
 
         .sparkle-dots span {
             position: absolute;
-            width: 2px;
-            height: 2px;
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
             opacity: 0.8;
             animation: sparkleMove linear infinite;
@@ -1119,14 +1119,14 @@
     <div class="floating-shapes">
        <span></span><span></span><span></span><span></span>
     </div>
-    <div class="sparkle-dots"></div>
+  
 
     <div class="container">
         <div class="header">
             <h1>AI Depth Vision Studio</h1>
             <p>Advanced depth estimation with enhanced layer-based chromostereopsis effects</p>
         </div>
-
+        <div class="sparkle-dots"></div>
         <div class="upload-section glass-card">
             <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
                 <div class="upload-content">
@@ -3299,7 +3299,7 @@
             const container = document.querySelector('.sparkle-dots');
             if (!container) return;
             const colors = ['rgba(255,0,0,0.8)', 'rgba(0,0,255,0.8)'];
-            const dotCount = 80;
+            const dotCount = 800;
             for (let i = 0; i < dotCount; i++) {
                 const dot = document.createElement('span');
                 dot.style.backgroundColor = colors[i % 2];
