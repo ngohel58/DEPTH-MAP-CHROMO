@@ -112,7 +112,26 @@
         }
 
         .sparkle-dots {
-        
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .sparkle-dots span {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            opacity: 0.3;
+            animation: sparkleMove linear infinite;
+        }
+
+        @keyframes sparkleMove {
+            to { transform: translate(var(--dx), var(--dy)); }
+        }
+
         @keyframes backgroundMove {
             0% { background-position: 0 0, 0 0, 0 0; }
             100% { background-position: 50px 50px, 0 0, 0 0; }
@@ -1101,7 +1120,7 @@
        <span></span><span></span><span></span><span></span>
     </div>
   
-
+<div class="sparkle-dots"></div>
     <div class="container">
         <div class="header">
             <h1>AI Depth Vision Studio</h1>
@@ -3280,7 +3299,7 @@
             const container = document.querySelector('.sparkle-dots');
             if (!container) return;
             const colors = ['rgba(255,0,0,0.8)', 'rgba(0,0,255,0.8)'];
-            const dotCount = 1000;
+            const dotCount = 10;
             for (let i = 0; i < dotCount; i++) {
                 const dot = document.createElement('span');
                 dot.style.backgroundColor = colors[i % 2];
@@ -3303,6 +3322,7 @@
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             updateGradientPreview();
+            createSparkleDots();
         });
     </script>
 </body>
