@@ -1,24 +1,19 @@
 # DEPTH-MAP-CHROMO
 
 This project provides an experimental UI for visualizing depth maps using several popular models.
+The latest `index.html` runs everything directly in the browser using **ONNX Runtime WebGL**. Download
+the ONNX model files and place them in the `models/` directory or adjust the paths in the code.
 
-## Backend
+The previous Python backend is still included for reference but is no longer required.
 
-A Python backend exposes real depth estimation models.
+### Optional backend (legacy)
 
-### Installation
+If you wish to run the old FastAPI backend, install the dependencies and start the server:
 
 ```bash
 pip install -r backend/requirements.txt
-```
-
-### Running
-
-```bash
 python backend/server.py
 ```
-
-The frontend expects the backend to be running at `http://localhost:8000`.
 
 ## Depth Pro
 
