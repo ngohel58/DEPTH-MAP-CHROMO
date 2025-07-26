@@ -1,0 +1,9 @@
+torch
+torchvision
+git+https://github.com/isl-org/depth-anything
+git+https://github.com/isl-org/MiDaS
+git+https://github.com/compvis/marigold
+fastapi
+uvicorn
+pillow
+numpy
