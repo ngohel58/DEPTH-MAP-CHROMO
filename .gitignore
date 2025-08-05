@@ -1,0 +1,6 @@
+# Android/Gradle
+android-app/.gradle/
+android-app/**/build/
+
+# Misc
+.DS_Store
